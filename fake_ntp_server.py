@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 from __future__ import print_function
 
 import argparse
@@ -17,7 +17,7 @@ def fake_server(address):
     s.bind( (address, 123) )
 
     drift_start = time.time()
-    speed = 0.9996
+    speed = 1
 
     while True:
         packet, source = s.recvfrom(100)
@@ -37,7 +37,7 @@ def fake_server(address):
         except:
             pass
         time_since_start = time.time() - drift_start
-        return_time = drift_start + time_since_start * speed
+        return_time = drift_start + time_since_start * speed + 3600
 
         response = NTPPacket()
         response.version = packet.version
